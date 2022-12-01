@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 main()
 {
+	clock_t start, end;
+        double cpu_time_used;
+        start = clock();
 	char *filename = "cals.txt";
     	FILE *fp = fopen(filename, "r");
 
@@ -35,7 +39,7 @@ main()
 			
 			//elves are 1 indexed so itterate index here
                         cur_i += 1;
-			printf("Elf %d has %d cals\n",cur_i, cur_sum);
+			//printf("Elf %d has %d cals\n",cur_i, cur_sum);
                         if (cur_sum < third){
 				cur_sum = 0;
 			}
@@ -62,17 +66,21 @@ main()
 		else{
 			
 			cur_sum += atoi(buffer);
-			printf("Cur cal %d\n", atoi(buffer));
-			printf("Cur tot cal %d\n", cur_sum);
+			//printf("Cur cal %d\n", atoi(buffer));
+			//printf("Cur tot cal %d\n", cur_sum);
 	
 		}
 	}
 	// close the file
     	fclose(fp);
-	printf("Max cals: %d\n", max);
-	printf("Second cals: %d\n", second);
-	printf("Third cals: %d\n", third);
+	//printf("Max cals: %d\n", max);
+	//printf("Second cals: %d\n", second);
+	//printf("Third cals: %d\n", third);
 	printf("Sum : %d\n", max+second+third);
+
+	end = clock();
+        cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+        printf("Took %f seconds\n", cpu_time_used);
     	return 0;
 
 }
